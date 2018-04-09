@@ -1,6 +1,6 @@
 FROM ubuntu
 
-MAINTAINER Kristijan Bartol
+LABEL Kristijan Bartol
 
 RUN apt-get update
 RUN apt-get install -y \
@@ -10,6 +10,5 @@ RUN apt-get install -y \
 RUN pip3 install tensorflow opencv-python matplotlib Image scipy
 
 RUN git clone https://github.com/kristijanbartol/GeoNet.git
-RUN cd GeoNet && git pull
 
 RUN mkdir /media/data/ && mkdir /media/data/kitti_eigen/ && mkdir /media/data/models
