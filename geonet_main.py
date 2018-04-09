@@ -22,6 +22,8 @@ flags.DEFINE_integer("num_threads",                 32,    "Number of threads fo
 flags.DEFINE_integer("img_height",                 128,    "Image height")
 flags.DEFINE_integer("img_width",                  416,    "Image width")
 flags.DEFINE_integer("seq_length",                   3,    "Sequence length for each example")
+flags.DEFINE_integer("num_source",                   2,    "Number of source images")
+flags.DEFINE_integer("num_scales",                   4,    "Number of output scales")
 
 ##### Training Configurations #####
 flags.DEFINE_string("checkpoint_dir",               "",    "Directory name to save the checkpoints")
@@ -36,6 +38,7 @@ flags.DEFINE_string("dispnet_encoder",      "resnet50",    "Type of encoder for 
 flags.DEFINE_boolean("scale_normalize",          False,    "Spatially normalize depth prediction")
 flags.DEFINE_float("rigid_warp_weight",            1.0,    "Weight for warping by rigid flow")
 flags.DEFINE_float("disp_smooth_weight",           0.5,    "Weight for disp smoothness")
+flags.DEFINE_boolean("add_dispnet",               True,    "")
 
 ##### Configurations about ResFlowNet of GeoNet (or DirFlowNetS) #####
 flags.DEFINE_string("flownet_type",         "residual",    "type of flownet, residual or direct")
@@ -44,11 +47,13 @@ flags.DEFINE_float("flow_smooth_weight",           0.2,    "Weight for flow smoo
 flags.DEFINE_float("flow_consistency_weight",      0.2,    "Weight for bidirectional flow consistency")
 flags.DEFINE_float("flow_consistency_alpha",       3.0,    "Alpha for flow consistency check")
 flags.DEFINE_float("flow_consistency_beta",       0.05,    "Beta for flow consistency check")
+flags.DEFINE_boolean("add_flownet",                False,    "")
 
 ##### Testing Configurations #####
 flags.DEFINE_string("output_dir",                 None,    "Test result output directory")
 flags.DEFINE_string("depth_test_split",        "eigen",    "KITTI depth split, eigen or stereo")
 flags.DEFINE_integer("pose_test_seq",                9,    "KITTI Odometry Sequence ID to test")
+flags.DEFINE_boolean("add_posenet",               True,    "")
 
 
 opt = flags.FLAGS

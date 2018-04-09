@@ -1,7 +1,4 @@
 from __future__ import division
-import tensorflow as tf
-import numpy as np
-import os
 import PIL.Image as pil
 from geonet_model import *
 
@@ -25,6 +22,7 @@ def test_depth(opt):
     config.gpu_options.allow_growth = True
 
     ##### Go #####
+    total_time = 0
     with tf.Session(config=config) as sess:
         saver.restore(sess, opt.init_ckpt_file)
         pred_all = []
@@ -44,7 +42,9 @@ def test_depth(opt):
                 scaled_im = raw_im.resize((opt.img_width, opt.img_height), pil.ANTIALIAS)
                 inputs[b] = np.array(scaled_im)
 
+            start_time = time.time()
             pred = sess.run(fetches, feed_dict={input_uint8: inputs})
+            total_time += time.time() - start_time
             for b in range(opt.batch_size):
                 idx = t + b
                 if idx >= len(test_files):
@@ -52,3 +52,5 @@ def test_depth(opt):
                 pred_all.append(pred['depth'][b,:,:,0])
 
         np.save(opt.output_dir + '/' + os.path.basename(opt.init_ckpt_file), pred_all)
+
+    print('Inference time: {:.2f}'.format(total_time / len(test_files)))
