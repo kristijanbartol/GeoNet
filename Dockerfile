@@ -4,11 +4,11 @@ MAINTAINER Kristijan Bartol
 
 RUN apt-get update
 RUN apt-get install -y \
-    python-pip \
+    python3 \
+    python3-pip \
     git
-RUN pip install tensorflow opencv-python matplotlib
-RUN pip install --upgrade pip
+RUN pip3 install tensorflow opencv-python matplotlib Image scipy
 
 RUN git clone https://github.com/kristijanbartol/GeoNet.git
 
-RUN mkdir /media/data && mkdir models/
+RUN mkdir /media/data/ && mkdir /media/data/kitti_eigen/ && mkdir GeoNet/models/

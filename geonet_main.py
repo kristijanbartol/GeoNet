@@ -10,7 +10,6 @@ import tensorflow.contrib.slim as slim
 from geonet_model import *
 from geonet_test_depth import *
 from geonet_test_pose import *
-from geonet_test_flow import *
 from data_loader import DataLoader
 
 flags = tf.app.flags
@@ -165,7 +164,8 @@ def main(_):
     elif opt.mode == 'test_pose':
         test_pose(opt)
     elif opt.mode == 'test_flow':
-        test_flow(opt)
+        pass
+        #test_flow(opt)    # using cv2 which is problematic in docker image
 
 if __name__ == '__main__':
     tf.app.run()
