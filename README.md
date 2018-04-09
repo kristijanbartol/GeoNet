@@ -108,6 +108,29 @@ We again provide evaluation script:
 python kitti_eval/eval_flow.py --dataset_dir=/path/to/kitti_stereo_2015/ --pred_dir=/path/to/predictions/
 ```
 
+## Docker inference
+
+To run clean inference on test set on your machine, you can run prepare docker image. Before that, you need to download KITTI dataset and pretrained models as described above. Then run the following commands:
+
+```
+./build.sh
+```
+
+to build docker container with project dependencies and cloned repository. Then run
+
+```
+./run.sh <absolute_path_to_kitti_eigen> <absolute_path_to_pretrained_model>
+```
+
+to run docker image. Note that path to pretrained model should look like </path/to/model>/model.
+
+Once inside docker container, run the following commands to test the code:
+
+```
+cd GeoNet
+./depth_inference.sh
+```
+
 ## Acknowledgements
 We thank [Tinghui Zhou](https://github.com/tinghuiz/SfMLearner) and [Clément Godard](https://github.com/mrharicot/monodepth) for their great work and repo.
 
