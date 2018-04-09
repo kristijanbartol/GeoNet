@@ -11,4 +11,4 @@ RUN pip install --upgrade pip
 
 RUN git clone https://github.com/kristijanbartol/GeoNet.git
 
-RUN mkdir /media/data
+RUN mkdir /media/data && mkdir models/
